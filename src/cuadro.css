@@ -1,0 +1,12 @@
+.cuadro{
+    margin: 0;
+    border: none;
+}
+
+.cuadro.off{
+    background-color: white;
+}
+
+.cuadro.on{
+    background-color: rgb(19, 2, 58);
+}

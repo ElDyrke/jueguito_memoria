@@ -1,0 +1,37 @@
+#cuadricula{
+    margin: 3vh auto;
+    width: 50%;
+    height: auto;
+    padding: 3.5vh;
+    background-color: #e7b9b9;
+    box-shadow: 0 0 30px 2px rgb(228, 29, 152);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2.5vh;
+    grid-auto-rows: minmax(8vw, auto);
+
+}
+
+#botones{
+    margin: 3vh auto;
+    padding: 1vh 2vw;
+    width: 50%;
+    background-color: #e7b9b9;
+    border-radius: 4vh;
+    box-shadow: 0 0 30px 2px rgb(228, 29, 152);
+}
+
+#botones button{
+    margin: 2vh 5%;
+    padding: 2vh 2vw;
+    width: 40%;
+    border: none;
+    border-radius: 3vh;
+    font-size: 3vh;
+    transition: 0.2s;
+}
+
+#botones button:hover{
+    cursor: pointer;
+    background-color: rgb(104, 224, 218) !important;
+}
