@@ -3,14 +3,20 @@ import "./cuadricula.css"
 import Cuadro from './Cuadro.jsx'
 
 function Cuadricula() {
-  var prevState = []
+  const patrones = []
   const onMax = 8
+  
   const crearPatron = (e) => {
+    let resultado = document.querySelector("#resultado")
+    resultado.innerText = ""
     const cuadricula = document.getElementById("cuadricula")
     var children = Array.from(cuadricula.children)
     let onCount = 0
 
-    children.forEach((child) => {child.className = "cuadro off"})
+    children.forEach((child) => {
+      child.className = "cuadro off"
+      child.disabled = true
+  })
 
     while (onCount < onMax) {
       let random = Math.ceil(Math.random() * (children.length - 1) - 1)
@@ -20,26 +26,50 @@ function Cuadricula() {
         onCount++
       }
     }
+    let prevState = ""
 
-    prevState = children
-    setTimeout(() => {children.forEach((child) => {child.className = "cuadro off"})}, 4000)
+    children.forEach(cuadro => {
+      if (cuadro.className === "cuadro on"){
+        prevState = prevState + "1"
+      } else {
+        prevState = prevState + "0"
+      }
+    })
+    patrones.push(prevState)
+    setTimeout(() => {children.forEach((child) => {
+      child.className = "cuadro off"
+      child.disabled = false
+    })}, 4000)
   }
     
   const checkear = () => {
     const cuadricula = document.getElementById("cuadricula")
     var children = Array.from(cuadricula.children)
-    
-    if (children === prevState) {
-      alert("Has ganado")
-      children.forEach((child) => {child.className = "cuadro off"})
+    let currState = ""
+    children.forEach(cuadro => {
+      if (cuadro.className === "cuadro on"){
+        currState = currState + "1"
+      } else {
+        currState = currState + "0"
+      }
+    })
+    console.log(currState + " " + patrones.at(-1))
+
+    let resultado = document.querySelector("#resultado")
+    if (currState === patrones.at(-1)) {
+      resultado.innerText= "Has Ganado"
+      children.forEach((child) => 
+      {child.className = "cuadro off"})
     } else {
-      alert("Has perdido")
-      children.forEach((child) => {child.className = "cuadro off"})
+      resultado.innerText = "Has Perdido"
+      children.forEach((child) => 
+      {child.className = "cuadro off"})
     }
   }
 
   return (
     <>
+    <h1 id= "resultado"></h1>
     <div id="cuadricula">
         <Cuadro/>
         <Cuadro/>
